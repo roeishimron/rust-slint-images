@@ -16,6 +16,8 @@ ENV ANDROID_SDK_ROOT=${ANDROID_HOME} \
     ANDROID_NDK_HOME=${ANDROID_HOME}/ndk/${ANDROID_NDK} \
     PATH=${PATH}:/opt/android-sdk/platform-tools:/opt/android-sdk/build-tools/${ANDROID_BUILD_TOOLS}:/opt/android-sdk/emulator
 
+LABEL org.opencontainers.image.source=https://github.com/roeishimron/rust-slint-images
+
 USER root
 RUN apt-get update && apt-get install -y --no-install-recommends \
         openjdk-21-jdk-headless curl unzip ca-certificates \

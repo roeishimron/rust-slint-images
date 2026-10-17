@@ -1,4 +1,5 @@
-IMAGE := roeish/rust-slint
+REGISTRY ?= ghcr.io/roeishimron
+IMAGE := $(REGISTRY)/rust-slint
 VERSION ?=
 ANDROID_API ?= 35
 
@@ -13,7 +14,7 @@ TAG := $(VERSION)-api$(ANDROID_API)
 all: build push
 
 build:
-	docker build --build-arg RUST_VERSION=$(VERSION) --build-arg ANDROID_API=$(ANDROID_API) -t $(IMAGE):$(TAG) .
+	docker build --build-arg REGISTRY=$(REGISTRY) --build-arg RUST_VERSION=$(VERSION) --build-arg ANDROID_API=$(ANDROID_API) -t $(IMAGE):$(TAG) .
 
 push:
 	docker push $(IMAGE):$(TAG)

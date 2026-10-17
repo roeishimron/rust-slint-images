@@ -1,4 +1,7 @@
+REGISTRY ?= ghcr.io/roeishimron
 ANDROID_API ?= 35
+VERSION ?= 1.99.1
+export REGISTRY
 
 .PHONY: all build
 

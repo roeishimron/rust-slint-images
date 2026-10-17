@@ -1,4 +1,5 @@
-IMAGE := roeish/android-base
+REGISTRY ?= ghcr.io/roeishimron
+IMAGE := $(REGISTRY)/android-base
 VERSION ?=
 
 ifeq ($(VERSION),)

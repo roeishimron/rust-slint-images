@@ -1,7 +1,8 @@
 # Project layer: pinned Rust + Android targets + Slint desktop deps + the dev tools every gate needs.
 # The agent CLI is NOT installed here; each project's devcontainer.json adds it.
+ARG REGISTRY=ghcr.io/roeishimron
 ARG ANDROID_API=35
-FROM roeish/android-base:${ANDROID_API}
+FROM ${REGISTRY}/android-base:${ANDROID_API}
 
 ARG RUST_VERSION=1.99.1
 ARG CARGO_APK=0.10.0
@@ -10,6 +11,8 @@ ARG CARGO_NEXTEST=0.9.148
 ARG CARGO_DENY=0.20.2
 ARG SCCACHE=0.18.0
 ARG SLINT_LSP=1.18.1
+
+LABEL org.opencontainers.image.source=https://github.com/roeishimron/rust-slint-images
 
 USER root
 # clang/lld/llvm: Skia renderer. The rest: Slint's winit backend (X11/Wayland, GL),
