@@ -1,10 +1,8 @@
 # Project layer: pinned Rust + Android targets + Slint desktop deps + the dev tools every gate needs.
 # The agent CLI is NOT installed here; each project's devcontainer.json adds it.
-ARG REGISTRY=ghcr.io/roeishimron
-ARG ANDROID_API=35
-FROM ${REGISTRY}/android-base:${ANDROID_API}
+FROM base
 
-ARG RUST_VERSION=1.99.1
+ARG RUST_VERSION
 ARG CARGO_APK=0.10.0
 ARG CARGO_MUTANTS=27.1.0
 ARG CARGO_NEXTEST=0.9.148

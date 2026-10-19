@@ -1,9 +1,10 @@
 # Builds both images and pushes them to ghcr.io/roeishimron/{android-base,rust-slint}.
-# Tags come from the Makefile defaults (ANDROID_API, VERSION = Rust version): bump them there.
+# Tags come from docker-bake.hcl (ANDROID_API, RUST_VERSION): bump them there.
 name: publish
 on:
   push:
     branches: [main]
+    paths: ['docker-bake.hcl', '*/Dockerfile', '.github/workflows/publish.yml']
   workflow_dispatch:
 
 permissions:
@@ -25,4 +26,4 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - run: make all
+      - run: docker buildx bake --push

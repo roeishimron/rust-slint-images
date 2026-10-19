@@ -10,14 +10,14 @@ Devcontainer/CI images for Rust + Slint projects that ship natively on desktop a
 No agent CLI is baked in: each project's `devcontainer.json` installs its agent.
 
 ```sh
-make build    # both layers locally (defaults: VERSION=1.99.1 Rust, ANDROID_API=35)
-make all      # build + push to ghcr.io/roeishimron (needs `docker login ghcr.io`)
+docker buildx bake          # both images locally (versions in docker-bake.hcl)
+docker buildx bake --push   # + push to ghcr.io/roeishimron (needs `docker login ghcr.io`)
 ```
 
 CI (`.github/workflows/publish.yml`) builds and pushes both on every push to `main`. Keep the packages
 public on ghcr.io so project CI and devcontainers can pull without credentials.
 
-Pins live as `ARG` defaults at the top of each Dockerfile. The Android CLI itself only has a `latest`
+Image versions (Rust, Android API) live in `docker-bake.hcl`; tool pins are `ARG` defaults in each Dockerfile. The Android CLI itself only has a `latest`
 channel, so reproducibility comes from the pinned SDK packages it installs.
 
 APKs are built with cargo-apk (Slint's documented tool), which uses the image's SDK and NDK as they are.

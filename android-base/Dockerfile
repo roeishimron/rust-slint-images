@@ -2,9 +2,9 @@
 # Every package below is pinned; bump them deliberately and retag.
 FROM mcr.microsoft.com/devcontainers/base:trixie
 
-# The SDK platform = the apps' target SDK. Keep it <= the NDK's NDK_MAX_PLATFORM_LEVEL (r28: 35):
-# cargo-apk ignores platforms the NDK doesn't know.
-ARG ANDROID_API=35
+# Set by docker-bake.hcl: the SDK platform = the apps' target SDK (<= the NDK's max platform level,
+# or cargo-apk ignores it).
+ARG ANDROID_API
 ARG ANDROID_PLATFORM_TOOLS=37.0.1
 ARG ANDROID_BUILD_TOOLS=36.0.0
 ARG ANDROID_NDK=28.2.13676358
